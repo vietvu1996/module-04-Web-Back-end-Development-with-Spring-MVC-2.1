@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Email Configuration List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        .table th .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: left;
+            padding: 10px;
+        }
+
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .table td {
+            padding-left: 25px;
+        }
+
+        a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Email Configuration List</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Languages:</th>
+            <th>Page Size:</th>
+            <th>Spams filter:</th>
+            <th>Signature:</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="email : ${emails}">
+            <td th:text="${email.language}"></td>
+            <td th:text="${email.pageSize}"></td>
+            <td th:text="${email.spamsFilter}"></td>
+            <td th:text="${email.signature}"></td>
+            <td><a th:href="@{/email/{id}/update(id=${email.id})}">Update</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
