@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="update :: head">
+    <title>Music List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+<div class="container mt-5">
+    <p style="color: red; font-size: 15px">
+        <span th:text="${message}"></span>
+        <span th:text="${success}"></span>
+    </p>
+
+    <h3>Music Management</h3>
+    <table id="musicList">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name:</th>
+            <th>Singer:</th>
+            <th>Type:</th>
+            <th>File Music:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="music : ${musicList}">
+            <td th:text="${music.musicName}"></td>
+            <td th:text="${music.singerName}"></td>
+            <td th:text="${music.type}"></td>
+            <td th:text="${music.fileMusic}"></td>
+            <td>
+                <audio controls>
+                    <source th:src="@{'/music/' + ${music.fileMusic}}" type="audio/mpeg">
+                    Your browser doesn't support the audio element.
+                </audio>
+            </td>
+            <td>
+                <a th:href="@{/music/{id}/update(id=${music.id})}" class="btn btn-warning">Update</a>
+                <form th:action="@{/music/delete}" method="post" class="inline-block">
+                    <input type="hidden" name="id" th:value="${music.id}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/music/create}" class="btn btn-primary mt-4">Add New Music</a>
+</div>
+</body>
+</html>
