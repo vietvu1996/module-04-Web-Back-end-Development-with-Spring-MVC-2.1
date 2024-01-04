@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout :: head">
+    <title>NASA Image of the Day</title>
+</head>
+<body>
+<div class="container">
+    <img id="img-of-the day" style="width: 600px; height: 400px" alt="" src=""/>
+
+    <form id="commentForm" method="post" th:action="@{/pictures}">
+        <label for="rating">Rate (1-5)</label>
+        <input type="number" id="rating" min="1" max="5" required/>
+        <br/>
+        <label for="authorName">Author's name</label>
+        <input type="text" id="authorName" required>
+        <br/>
+        <label for="comment">Comment</label>
+        <textarea id="comment" required></textarea>
+        <br/>
+        <button type="submit" value="Sent evaluate">Send Evaluate</button>
+    </form>
+    <div id="pictures" th:each="picture : ${pictures}" class="picture">
+        <strong th:text="${picture.authorName}">Author Name</strong>
+        <p th:text="${picture.comment}">Comment</p>
+        <p>Evaluate: <span th:text="${picture.rate}"></span></p>
+        <p>Likes: <span th:text="${picture.likes}"></span></p>
+        <p>Feedback: <span th:text="${picture.comment}"></span></p>
+        <form th:action="@{/pictures/{id}/like(id=${picture.id})}" method="post">
+            <input type="Submit" value="Like"/>
+        </form>
+        <a th:href="@{/pictures/{id}(id=${picture.id})}">Detail</a>
+    </div>
+</div>
+</body>
+</html>
