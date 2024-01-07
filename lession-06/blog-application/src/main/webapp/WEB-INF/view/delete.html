@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        form p {
+            margin: 10px 0;
+        }
+
+        form input[type="text"], form textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Delete Blog</h1>
+<p>Do you want to delete this blog ?</p>
+<form action="#" th:action="@{/blogs/delete}" th:object="${blog}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <p><input type="submit" value="Yes"></p>
+</form>
+<a href="/blogs">No, back to the Blog's list</a>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog list</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        form p {
+            margin: 10px 0;
+        }
+
+        form input[type="text"], form textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Blog list</h1>
+<p>
+    <a th:href="@{/blogs/create}">
+        Add New Blog
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<table border="1">
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Content</td>
+        <td>Image link</td>
+        <td>Update</td>
+        <td>Delete</td>
+        <td>View</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog : ${blogs}">
+        <td th:text="${blog.name}"></td>
+        <td th:text="${blog.content}"></td>
+        <td th:text="${blog.image}"></td>
+        <td><img th:src="${blog.image}" alt="Blog Image"/></td>
+        <td><a th:href="@{/blogs/{id}/update(id=${blog.id})}">Update</a></td>
+        <td><a th:href="@{/blogs/{id}/delete(id=${blog.id})}">Delete</a></td>
+        <td><a th:href="@{/blogs/{id}/view(id=${blog.id})}">View</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
