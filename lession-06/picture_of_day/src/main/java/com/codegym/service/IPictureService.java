@@ -11,7 +11,7 @@ public interface IPictureService {
 
     Picture findById(int id);
 
-    Picture update(Picture picture);
-
     Picture like(int id);
+
+    void remove(int id);
 }
