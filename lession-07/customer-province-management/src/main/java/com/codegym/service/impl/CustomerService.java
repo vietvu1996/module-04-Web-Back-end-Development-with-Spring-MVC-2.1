@@ -4,9 +4,12 @@ import com.codegym.model.Customer;
 import com.codegym.model.Province;
 import com.codegym.repository.ICustomerRepository;
 import com.codegym.service.ICustomerService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
 public class CustomerService implements ICustomerService {
     private final ICustomerRepository customerRepository;
@@ -19,6 +22,17 @@ public class CustomerService implements ICustomerService {
     public Iterable<Customer> findAllByProvince(Province province) {
         return customerRepository.findAllByProvince(province);
     }
+
+    @Override
+    public Page<Customer> findAll(Pageable pageable) {
+        return customerRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Customer> findByFirstNameContaining(Pageable pageable, String name) {
+        return customerRepository.findAllByFirstNameContaining(pageable, name);
+    }
+
 
     @Override
     public Iterable<Customer> findAll() {

@@ -4,6 +4,8 @@ import com.codegym.model.Customer;
 import com.codegym.model.Province;
 import com.codegym.service.ICustomerService;
 import com.codegym.service.IProvinceService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,9 +31,22 @@ public class CustomerController {
     }
 
     @GetMapping("")
-    public ModelAndView listCustomer() {
+    public ModelAndView listCustomer(Pageable pageable) {
         ModelAndView view = new ModelAndView("customer/list");
-        Iterable<Customer> customers = customerService.findAll();
+        Page<Customer> customers = customerService.findAll(pageable);
+        view.addObject("customers", customers);
+        return view;
+    }
+
+    @PostMapping("/search")
+    public ModelAndView listCustomerSearch(@RequestParam("search") Optional<String> search, Pageable pageable) {
+        Page<Customer> customers;
+        if (search.isPresent()) {
+            customers = customerService.findByFirstNameContaining(pageable, search.get());
+        } else {
+            customers = customerService.findAll(pageable);
+        }
+        ModelAndView view = new ModelAndView("customer/list");
         view.addObject("customers", customers);
         return view;
     }
