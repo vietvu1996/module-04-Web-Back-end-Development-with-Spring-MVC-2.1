@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Blog</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        form p {
+            margin: 10px 0;
+        }
+
+        form input[type="text"], form textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Create Blog</h1>
+
+<p>
+    <a th:href="@{/blogs}">
+        Back to blog's list
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<div id="form">
+    <form th:action="@{/blogs/create}" th:object="${blog}" method="post" novalidate="novalidate">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" th:field="*{name}">
+        </div>
+
+        <div>
+            <label for="content">Content: </label>
+            <input type="text" id="content" name="content" th:field="*{content}">
+        </div>
+
+        <div>
+            <label for="image">Image: </label>
+            <input type="text" id="image" name="image" th:field="*{image}">
+        </div>
+
+        <div>
+            <label for="category">Category</label>
+            <select id="category" th:field="*{category}">
+                <option th:each="p : ${categories}" th:value="${p.id}" th:text="${p.type}"></option>
+            </select>
+        </div>
+
+        <input type="submit" value="Create">
+    </form>
+</div>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

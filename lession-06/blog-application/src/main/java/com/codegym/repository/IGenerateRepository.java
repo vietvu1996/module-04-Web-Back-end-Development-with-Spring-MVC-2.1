@@ -11,5 +11,4 @@ public interface IGenerateRepository<T> {
 
     T findById(int id);
 
-    void remove(int id);
-}
+    void remove(int id);}
