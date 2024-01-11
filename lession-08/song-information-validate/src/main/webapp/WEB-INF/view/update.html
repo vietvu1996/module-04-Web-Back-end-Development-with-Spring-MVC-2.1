@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="create :: head">
+    <title>Update Song</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<p>
+    <a th:href="@{/songs}">
+        Back to song's list
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2>Create new song</h2>
+    <form th:action="@{/songs/update}" th:object="${song}" method="post" novalidate="novalidate">
+        <input type="hidden" name="id" th:value="*{id}">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${song.name}" th:field="*{name}" required>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="singer">Singer:</label>
+            <input type="text" class="form-control" id="singer" name="singer" th:value="*{singer}" required>
+            <p th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}" style="color: red;"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="typeSong">Type:</label>
+            <input type="text" class="form-control" id="typeSong" name="typeSong" th:value="*{typeSong}" required>
+            <p th:if="${#fields.hasErrors('typeSong')}" th:errors="*{typeSong}" style="color: red;"></p>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Update">
+    </form>
+</div>
+</body>
+</html>

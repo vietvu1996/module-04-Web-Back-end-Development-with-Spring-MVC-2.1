@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create song</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<p>
+    <a th:href="@{/songs}">
+        Back to song's list
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2>Create new song</h2>
+    <form th:action="@{/songs/create}" th:object="${song}" method="post" novalidate="novalidate">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
+            <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="singer">Singer:</label>
+            <input type="text" class="form-control" id="singer" name="singer" th:field="*{singer}" required>
+            <p style="color: red" th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="typeSong">Type:</label>
+            <input type="text" class="form-control" id="typeSong" name="typeSong" th:field="*{typeSong}" required>
+            <p style="color: red" th:if="${#fields.hasErrors('typeSong')}" th:errors="*{typeSong}"></p>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Create">
+    </form>
+</div>
+</body>
+</html>

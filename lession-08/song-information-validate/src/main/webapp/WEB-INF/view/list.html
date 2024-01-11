@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>List Song</title>
+</head>
+<body class="bg-gray-100">
+<h2>List Song </h2>
+<br>
+<br>
+<p>
+    <a th:href="@{/songs/create}">
+        Add New Song
+    </a>
+</p>
+
+<div class="container mt-5">
+    <p style="color: red; font-size: 15px">
+        <span th:text="${message}"></span>
+    </p>
+    <h2 class="text-2x1 font-bold mb-4">Song List</h2>
+    <table class="table-auto border border-collapse w-full">
+        <thead>
+        <tr class="bg-gray-200">
+            <th class="py-2 px-4 border">ID</th>
+            <th class="py-2 px-4 border">Name</th>
+            <th class="py-2 px-4 border">Singer</th>
+            <th class="py-2 px-4 border">Type</th>
+            <th class="py-2 px-4 border">Update</th>
+            <th class="py-2 px-4 border">Delete</th>
+            <th class="py-2 px-4 border">View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="song : ${songs}" class="border">
+            <td class="py-2 px-4 border" th:text="${song.id}"></td>
+            <td class="py-2 px-4 border" th:text="${song.name}"></td>
+            <td class="py-2 px-4 border" th:text="${song.singer}"></td>
+            <td class="py-2 px-4 border" th:text="${song.typeSong}"></td>
+            <td class="py-2 px-4 border">
+                <a th:href="@{/songs/{id}/update(id=${song.id})}" class="inline-block">Update</a>
+                <form th:action="@{/songs/delete}" method="post" class="inline-block">
+                    <input type="hidden" name="id" th:value="${song.id}">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+                <a th:href="@{/songs/{id}/view(id=${song.id})}" class="inline-block">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
