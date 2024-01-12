@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NASA Image of the Day</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #comments {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .comment strong {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .comment p {
+            margin: 0;
+        }
+
+        .comment form {
+            margin-top: 10px;
+        }
+
+        .comment form input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .comment form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .comment a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .comment a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+        img {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="https://png.pngtree.com/thumb_back/fw800/background/20230523/pngtree-sad-pictures-for-desktop-hd-backgrounds-image_2690576.jpg"/>
+    <p th:text="${message}"></p>
+    <h2>Detail Comment</h2>
+
+    <div id="pictures" th:each="picture : ${pictures}" class="picture">
+        <strong th:text="${picture.authorName}">Author Name</strong>
+        <p>Evaluate: <span th:text="${picture.rate}"></span></p>
+        <p>Likes: <span th:text="${picture.likes}"></span></p>
+        <p>Feedback: <span th:text="${picture.comment}"></span></p>
+        <form th:action="@{/pictures/{id}/like(id=${picture.id})}" method="post">
+            <input type="Submit" value="Like"/>
+        </form>
+    </div>
+</div>
+
+<a class="btn btn-primary" th:if="${pictures.hasPrevious()}"
+   th:href="@{/pictures/page(page=${pictures.number - 1})}">Previous</a>
+<span th:text="${pictures.number + 1}"></span> | <span th:text="${pictures.totalPages}"></span>
+<a class="btn btn-primary" th:if="${pictures.hasNext()}"
+   th:href="@{/pictures/page(page=${pictures.number + 1})}">Next</a>
+
+<form id="commentForm" method="post" th:action="@{/pictures/create}">
+    <label for="rating">Rate (1-5)</label>
+    <input type="number" id="rating" name="rate" min="1" max="5" required/>
+    <br/>
+    <label for="authorName">Author's name</label>
+    <input type="text" id="authorName" name="authorName" required>
+    <br/>
+    <label for="comment">Comment</label>
+    <textarea id="comment" name="comment" required></textarea>
+    <br/>
+    <button type="submit" value="Sent evaluate">Send Evaluate</button>
+</form>
+
+<script>
+    let query = 'https://api.nasa.gov/planetary/apod?api_key=aJGAFmDQ8UtWTcQXuKiJFUgb7gJhMbSrjbgu3jBC';
+    let request = new XMLHttpRequest();
+    request.open('GET', query);
+    request.onload = function () {
+        if (request.status === 200) {
+            let response = JSON.parse(request.responseText);
+            document.getElementById('img-of-the-day').setAttribute('src', response.url);
+        }
+    };
+    request.send();
+</script>
+</body>
+</html>
