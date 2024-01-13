@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Book</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://i.pinimg.com/originals/d3/05/9d/d3059d50f659c19af18752555524824c.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 50%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        span {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: normal;
+            width: 100%;
+        }
+
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00507F;
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<h2>Borrow Book</h2>
+<form th:action="@{/books/borrow/{id}(id=${book.id})}" method="post">
+    <label for="title">Title:</label>
+    <span id="title" th:text="${book.bookName}"></span>
+    <br>
+    <label for="author">Author:</label>
+    <span id="author" th:text="${book.author}"></span>
+    <br>
+    <label for="quantity">Quantity Available:</label>
+    <span id="quantity" th:text="${book.quantity}"></span>
+    <br>
+    <label for="borrowQuantity">Quantity to Borrow:</label>
+    <input type="number" id="borrowQuantity" name="borrowQuantity" th:value="${borrowQuantity}" required>
+    <br>
+    <button type="submit">Borrow</button>
+</form>
+</body>
+</html>

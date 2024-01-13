@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://i.pinimg.com/originals/d3/05/9d/d3059d50f659c19af18752555524824c.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 50%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<h2>Add Book</h2>
+<form th:action="@{/books/add}" th:object="${book}" method="post">
+    <label for="nameBook">Title: </label>
+    <input type="text" id="nameBook" th:field="*{bookName}" required>
+    <br>
+    <label for="author">Author: </label>
+    <input type="text" id="author" th:field="*{author}" required>
+    <br>
+    <label for="quantity">Quantity: </label>
+    <input type="number" id="quantity" th:field="*{quantity}" required>
+    <br>
+    <label for="year">Year Of Release: </label>
+    <input type="number" id="year" th:field="*{yearOfRelease}" required>
+    <br>
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>

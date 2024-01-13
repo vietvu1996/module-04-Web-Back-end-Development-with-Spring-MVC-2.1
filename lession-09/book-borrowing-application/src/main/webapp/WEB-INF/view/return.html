@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Book</title>
+</head>
+<body>
+<h2>Return Book</h2>
+<form th:action="@{/books/return/{id}(id=${book.id})}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+    <label>Title:</label>
+    <span th:text="${book.bookName}"></span>
+    <br>
+    <label>Author:</label>
+    <span th:text="${book.author}"></span>
+    <br>
+    <label>Quantity:</label>
+    <span th:text="${book.quantity}"></span>
+    <br>
+    <label>Enter Return Code:</label>
+    <input type="text" name="returnCode" required>
+    <br>
+    <button type="submit">Return</button>
+</form>
+<p th:text="${error}" style="color: red;"></p>
+</body>
+</html>

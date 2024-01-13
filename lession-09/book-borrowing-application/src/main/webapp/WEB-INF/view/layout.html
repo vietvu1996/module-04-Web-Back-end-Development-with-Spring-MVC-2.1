@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            background-color: grey;
+        }
+
+        .sidebar {
+            width: 30%;
+            height: 100vh;
+            background-color: #333;
+            position: fixed;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .sidebar h1 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .sidebar hr {
+            margin-top: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 80%;
+        }
+
+        .sidebar li {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            border-bottom: 1px solid #444;
+        }
+
+        .sidebar li:hover {
+            background-color: #222;
+        }
+
+        .sidebar li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .sidebar li a span {
+            margin-left: 10px;
+        }
+
+        .main {
+            width: 70%;
+            margin-left: 30%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main img {
+            max-width: 100%;
+            height: auto;
+            border: 5px solid white;
+            box-shadow: 0 0 20px black;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/4e9e7bbd1b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="sidebar">
+    <h1>BOOKS MANAGER</h1>
+    <hr width="80%" color="#444" align="right" size="3px">
+    <ul>
+        <li><a href="/books/list"><i class="fas fa-book"></i><span>BOOKS</span></a></li>
+        <li><a href="/books/add"><i class="fas fa-plus"></i><span>ADD BOOK</span></a></li>
+        <li><a href="/books/check-code/{id}"><i class="fas fa-search"></i><span>VIEW CODE BORROW</span></a></li>
+        <li><a href="/books/generate-code/{id}"><i class="fas fa-cogs"></i><span>GET CODE BORROW</span></a></li>
+    </ul>
+</div>
+<div class="main">
+    <img src="https://i.pinimg.com/originals/d3/05/9d/d3059d50f659c19af18752555524824c.jpg" alt="Book Stack">
+</div>
+</body>
+</html>
