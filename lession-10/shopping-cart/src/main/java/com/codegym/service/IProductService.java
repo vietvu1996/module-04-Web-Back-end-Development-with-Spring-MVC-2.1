@@ -8,4 +8,8 @@ public interface IProductService {
     Iterable<Product> findAll();
 
     Optional<Product> findById(int id);
+
+    void save(Product product);
+
+    void remove(int id);
 }
