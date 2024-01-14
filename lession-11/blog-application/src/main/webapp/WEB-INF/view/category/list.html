@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout :: head">
+    <title>List Category</title>
+</head>
+<body>
+<h2>Categories</h2>
+<p>
+    <a th:href="@{/categories/create}">
+        Add New Category
+    </a>
+</p>
+
+<p>
+    <a th:href="@{/blogs}">
+        List Blogs
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<table id="categories">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Update</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="a, aStatus : ${categories}">
+        <td th:text="${aStatus.count}"></td>
+        <td><a th:href="@{/categories/{id}/view(id=${a.getId()})}" th:text="${a.getType()}"></a></td>
+        <td><a th:href="@{/categories/{id}/update(id=${a.getId()})}">Update</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
