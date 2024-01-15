@@ -1,0 +1,45 @@
+#display-create {
+    display: none;
+    float: left;
+}
+
+#display-list {
+    width: 600px;
+    margin: auto;
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+#display-list tr, #display-list th, #display-list td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding-left: 10px;
+}
+
+.btn {
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+}
+
+#div-btn {
+    width: 600px;
+    margin-left: 470px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#title {
+    display: none;
+}
+
+#add-smartphone {
+    display: none;
+    width: 300px;
+    margin: auto;
+}

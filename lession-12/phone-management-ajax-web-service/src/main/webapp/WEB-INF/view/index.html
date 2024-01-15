@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<form id="add-smartphone">
+    <h1>Form create</h1>
+    <table>
+        <tr>
+            <td><label for="producer">Producer: </label></td>
+            <td><input type="text" id="producer" name="producer" placeholder="producer"></td>
+        </tr>
+
+        <tr>
+            <td><label for="model">Model: </label></td>
+            <td><input type="text" id="model" name="model" placeholder="model"></td>
+        </tr>
+
+        <tr>
+            <td><label for="price">Price: </label></td>
+            <td><input type="text" id="price" name="price" placeholder="price"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
+        </tr>
+    </table>
+</form>
+<h1 id="title">List SmartPhone</h1>
+<div id="div-btn">
+    <button onclick="successHandler()" id="display">Display list smartphone</button>
+    <button onclick="displayFormCreate()" id="display-create">Create New Smartphone</button>
+</div>
+<div id="smartphoneList"></div>
+</body>
+</html>
