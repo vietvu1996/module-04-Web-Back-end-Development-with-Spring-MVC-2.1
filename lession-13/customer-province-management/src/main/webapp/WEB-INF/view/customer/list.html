@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="layout :: head">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <title>List Customer</title>
+</head>
+<body>
+<p>Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnam</a></p>
+<h2 th:text="#{list.title}"></h2>
+<p>
+    <a th:href="@{/customers/create}" th:text="#{add}">
+        Add New Customer
+    </a>
+</p>
+
+<p>
+    <a th:href="@{/provinces}" th:text="#{provinces}">
+        Provinces
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<div style="margin-bottom: 10px; margin-left: 110px">
+    <form th:action="@{/customers/search}" th:text="#{Search}" method="post">
+        <label><input type="text" name="search"></label>
+        <input type="submit" class="btn btn-primary" value="Search">
+    </form>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th th:text="#{STT}"></th>
+        <th th:text="#{FirstName}"></th>
+        <th th:text="#{LastName}"></th>
+        <th th:text="#{province}"></th>
+        <th th:text="#{update}"></th>
+        <th th:text="#{delete}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c, cStatus : ${customerPage.content}">
+        <td th:text="${cStatus.count}"></td>
+        <td th:text="${c.getFirstName()}"></td>
+        <td th:text="${c.getLastName()}"></td>
+        <td th:text="${c.getProvince().getName()}"></td>
+        <td><a th:href="@{/customers/{id}/update(id=${c.id})}">Update</a></td>
+        <td><a th:href="@{/customers/{id}/delete(id=${c.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-primary" th:if="${customers.hasPrevious()}"
+   th:href="@{/customers/page(page=${customers.number - 1})}">Previous</a>
+<span th:text="${customers.number + 1}"></span> | <span th:text="${customers.totalPages}"></span>
+<a class="btn btn-primary" th:if="${customers.hasNext()}"
+   th:href="@{/customers/page(page=${customers.number + 1})}">Next</a>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
