@@ -1,0 +1,94 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h3>Blogs</h3>-->
+<!--<br>-->
+<!--<label>-->
+<!--    <input type="text" id="search-input" placeholder="search">-->
+<!--</label>-->
+<!--<button onclick="search()">Search</button>-->
+<!--<div id="search-list"></div>-->
+<!--<br>-->
+<!--<div id="blogs-list"></div>-->
+<!--<button onclick="load()">Load More</button>-->
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $.ajax({-->
+<!--            type: "GET",-->
+<!--            url: "http://localhost:8080/api/blogs",-->
+<!--            success: function (response) {-->
+<!--                let data = response;-->
+<!--                let content = '<table id="display-list" border="1">' +-->
+<!--                    '<tr>\n' +-->
+<!--                    '<th>Name</th>\n' +-->
+<!--                    '<th>Content</th>\n' +-->
+<!--                    '<th>Image</th>\n' +-->
+<!--                    '<th>Category</th>\n' +-->
+<!--                    '</tr>'-->
+
+<!--                for (let i = 0; i < data.length; i++) {-->
+<!--                    content += getBlog(data[i]);-->
+<!--                }-->
+<!--                $('#blogs-list').html(content);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    function getBlog(blog) {-->
+<!--        return `<tr><td> ${blog.name}</td>` +-->
+<!--            `<td> ${blog.content}</td>` +-->
+<!--            `<td> ${blog.image}</td>` +-->
+<!--            `<td> ${blog.category.type}</td>` +-->
+<!--            `</tr>`-->
+<!--    }-->
+
+<!--    function search() {-->
+<!--        let content = $("#search-input").val();-->
+<!--        $.ajax({-->
+<!--            type: "GET",-->
+<!--            url: "http://localhost:8080/api/blogs/search?content=" + content,-->
+<!--            success: function (data) {-->
+<!--                let content = '<p>Search List</p> <table id="display-list" border="1">' +-->
+<!--                    '<tr>\n' +-->
+<!--                    '<th>Name</th>\n' +-->
+<!--                    '<th>Content</th>\n' +-->
+<!--                    '<th>Image</th>\n' +-->
+<!--                    '<th>Category</th>\n' +-->
+<!--                    '</tr>'-->
+
+<!--                for (let i = 0; i < data.length; i++) {-->
+<!--                    content += getBlog(data[i]);-->
+<!--                }-->
+<!--                $('#search-list').html(content);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    function load() {-->
+<!--        $.ajax({-->
+<!--            type: "GET",-->
+<!--            url: "http://localhost:8080/api/blogs/load",-->
+<!--            success: function (response) {-->
+<!--                let data = response.content;-->
+<!--                let content = '<table id="display-list" border="1"><tr>\n' +-->
+<!--                    ' <th>Name</th>\n' +-->
+<!--                    ' <th>Content</th>\n' +-->
+<!--                    ' <th>Image</th>\n' +-->
+<!--                    ' <th>Category</th>\n' +-->
+<!--                    ' </tr>';-->
+
+<!--                for (let i = 0; i < data.length; i++) {-->
+<!--                    content += getBlog(data[i]);-->
+<!--                }-->
+<!--                $(`#blogs-list`).html(content);-->
+<!--            }-->
+<!--        })-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
