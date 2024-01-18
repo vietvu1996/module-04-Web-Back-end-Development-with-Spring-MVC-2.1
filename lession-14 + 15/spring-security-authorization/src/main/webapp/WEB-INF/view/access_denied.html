@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Dear <strong th:text="${user}"></strong>,
+You are not authorized to access this page
+<p><a th:href="@{/logout}">Logout</a></p>
+</body>
+</html>
