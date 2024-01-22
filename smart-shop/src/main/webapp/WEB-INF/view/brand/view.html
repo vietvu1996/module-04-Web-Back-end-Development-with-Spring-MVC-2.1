@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brand Details</title>
+</head>
+<body>
+<h1>Brand Details</h1>
+
+<table>
+    <tr>
+        <td>Brand's name</td>
+        <td th:text="${brand.name}"></td>
+
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <h2>List product of this brand</h2>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Picture</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="product :${products}">
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.description}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.imgURL}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

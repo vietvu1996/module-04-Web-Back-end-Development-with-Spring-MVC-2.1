@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/resources/product-detail.css}">
+</head>
+<body>
+<h1>Product Details</h1>
+
+<button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+<section class="product-detail">
+
+</section>
+
+<table border="1">
+    <tr>
+        <th>Name:</th>
+        <td th:text="${product.name}"></td>
+    </tr>
+
+    <tr>
+        <th>Description:</th>
+        <td th:text="${product.description}"></td>
+    </tr>
+
+    <tr>
+        <th>Price:</th>
+        <td th:text="${product.price}"></td>
+    </tr>
+
+    <tr>
+        <th>Picture:</th>
+        <td th:text="${product.imgURL}"></td>
+    </tr>
+
+    <tr>
+        <th>Category:</th>
+        <td th:text="${product.category.name}"></td>
+    </tr>
+</table>
+
+<script>
+    let mybutton = document.getElementById("myBtn-scroll");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+</body>
+</html>

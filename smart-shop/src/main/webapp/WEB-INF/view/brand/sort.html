@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorted Products</title>
+</head>
+<body>
+<h1>Sorted Products</h1>
+
+<div>
+    <a th:href="@{/brands/view/sort?sortType='name'&brandId=${brand.id}}">Sort Product By Name</a>
+    <a th:href="@{/brands/view/sort?sortType='priceDesc'&brandId=${brand.id}}">Sorted Product By Increase Price</a>
+    <a th:href="@{/brands/view/sort?sortType='priceAsc'&brandId=${brand.id}}">Sorted Product By Decrease Price</a>
+</div>
+
+<p th:if="${sortType == 'name'}">Sorted Product By Name</p>
+<p th:if="${sortType == 'priceDesc'}">Sorted Product By Increase Price</p>
+<p th:if="${sortType == 'priceAsc'}">Sorted Product By Decrease Price</p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Picture</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="product : ${sortedProducts}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.imgURL}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

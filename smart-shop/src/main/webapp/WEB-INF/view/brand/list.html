@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Brands</title>
+</head>
+<body>
+<h1>List of Brands</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+
+    <tbody th:each="brand : ${brands}">
+    <tr>
+        <td th:text="${brand.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
